@@ -94,3 +94,48 @@ for i in a:
 
 
 
+'''
+sk = [list(map(int, input().split())) for _ in range(9)]
+z = [(i, j) for i in range(9) for j in range(9) if sk[i][j] == 0]
+
+def percent(i, j):
+    pro = [1,2,3,4,5,6,7,8,9]  
+    
+    for k in range(9):
+        if sk[i][k] in pro:
+            pro.remove(sk[i][k])
+        if sk[k][j] in pro:
+            pro.remove(sk[k][j])
+            
+    i //= 3
+    j //= 3
+    for p in range(i*3, (i+1)*3):
+        for q in range(j*3, (j+1)*3):
+            if sk[p][q] in pro:
+                pro.remove(sk[p][q])
+    
+    return pro
+
+flag = False
+def dfs(x):
+    global flag
+    
+    if flag: 
+        return
+        
+    if x == len(z): 
+        for row in sk:
+            print(*row)
+        flag = True 
+        return
+        
+    else:    
+        (i, j) = z[x]
+        pro = percent(i, j) 
+        
+        for num in pro:
+            sk[i][j] = num 
+            dfs(x + 1) 
+            sk[i][j] = 0 
+dfs(0)   
+'''
