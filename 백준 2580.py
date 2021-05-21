@@ -138,4 +138,5 @@ def dfs(x):
             dfs(x + 1) 
             sk[i][j] = 0 
 dfs(0)   
+
 '''
